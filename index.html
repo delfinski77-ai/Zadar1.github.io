@@ -7,11 +7,21 @@
     <meta name="keywords" content="spływy kajakowe, Mała Panew, Krupski Młyn, kajaki, aktywny wypoczynek" />
     <title>Spływ Mała Panew – Spływy kajakowe Krupski Młyn</title>
 
-    <link rel="stylesheet" href="style.css" />
+    <!-- Tailwind CDN (już dobre) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="script.js" defer></script>
+    
+    <!-- Dodano: Security Headers dla formularza -->
+    <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://docs.google.com https://forms.gle;">
+    
+    <style>
+        /* Dodatkowe style dla lepszej integracji formularza */
+        iframe {
+            border: none !important;
+        }
+    </style>
 </head>
 <body class="font-sans text-gray-900 bg-white">
+    <!-- ====== NAGŁÓWEK (bez zmian) ====== -->
     <header class="fixed top-0 left-0 right-0 z-30 bg-white/90 backdrop-blur border-b border-gray-200">
         <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
             <a href="#hero" class="flex items-center gap-2">
@@ -45,9 +55,8 @@
     </header>
 
     <main class="pt-20">
-        <!-- HERO -->
+        <!-- ====== HERO (bez zmian) ====== -->
         <section id="hero" class="relative min-h-[70vh] flex items-center justify-center text-center text-white">
-            <!-- Zmiana nazwy pliku na hero-bg.webp -->
             <div class="absolute inset-0 -z-10 bg-cover bg-center" style="background-image: url('images/hero-bg.webp');"></div>
             <div class="absolute inset-0 -z-10 bg-black/45"></div>
             <div class="max-w-3xl mx-auto px-4 py-16">
@@ -63,7 +72,7 @@
             </div>
         </section>
 
-        <!-- O NAS -->
+        <!-- ====== O NAS (bez zmian) ====== -->
         <section id="o-nas" class="py-16 bg-gray-50">
             <div class="max-w-6xl mx-auto px-4">
                 <header class="mb-10 text-center">
@@ -85,7 +94,6 @@
                         </p>
                     </article>
                     <div class="grid grid-cols-1 gap-4">
-                        <!-- Zmiana nazw plików na .webp -->
                         <figure class="rounded-lg overflow-hidden shadow-md">
                             <img src="images/kajak-rodzinny.webp" alt="Kajaki na rzece Mała Panew" class="w-full h-full object-cover" />
                         </figure>
@@ -97,7 +105,7 @@
             </div>
         </section>
 
-        <!-- OFERTA -->
+        <!-- ====== OFERTA (bez zmian) ====== -->
         <section id="oferta" class="py-16">
             <div class="max-w-6xl mx-auto px-4">
                 <header class="mb-10 text-center">
@@ -149,7 +157,7 @@
             </div>
         </section>
 
-        <!-- GALERIA -->
+        <!-- ====== GALERIA (poprawiona) ====== -->
         <section id="gallery" class="py-16 bg-gray-50">
             <div class="max-w-6xl mx-auto px-4">
                 <header class="mb-10 text-center">
@@ -160,26 +168,23 @@
                 </header>
       
                <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <!-- ZDJĘCIE 1 -->
-    <button class="group relative overflow-hidden rounded-lg shadow-md focus:outline-none" data-lightbox="images/kajak-1.jpg" aria-label="Podgląd zdjęcia 1">
-        <img src="images/kajak-1.jpg" alt="Kajak na rzece Mała Panew, widok z perspektywy wioślarza" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
-    </button>
+                    <!-- Używamy .jpg, ale lepiej miej w folderze .webp dla optymalizacji! -->
+                    <button class="group relative overflow-hidden rounded-lg shadow-md focus:outline-none" data-lightbox="images/kajak-1.jpg" aria-label="Podgląd zdjęcia 1">
+                        <img src="images/kajak-1.jpg" alt="Kajak na rzece Mała Panew, widok z perspektywy wioślarza" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
+                    </button>
 
-    <!-- ZDJĘCIE 2 -->
-    <button class="group relative overflow-hidden rounded-lg shadow-md focus:outline-none" data-lightbox="images/kajak-2.jpg" aria-label="Podgląd zdjęcia 2">
-        <img src="images/kajak-2.jpg" alt="Kajak płynący środkiem rzeki, drzewa w tle" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
-    </button>
+                    <button class="group relative overflow-hidden rounded-lg shadow-md focus:outline-none" data-lightbox="images/kajak-2.jpg" aria-label="Podgląd zdjęcia 2">
+                        <img src="images/kajak-2.jpg" alt="Kajak płynący środkiem rzeki, drzewa w tle" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
+                    </button>
 
-    <!-- ZDJĘCIE 3 -->
-    <button class="group relative overflow-hidden rounded-lg shadow-md focus:outline-none" data-lightbox="images/kajak-3.jpg" aria-label="Podgląd zdjęcia 3">
-        <img src="images/kajak-3.jpg" alt="Kajak zbliżający się do zakrętu rzeki" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
-    </button>
+                    <button class="group relative overflow-hidden rounded-lg shadow-md focus:outline-none" data-lightbox="images/kajak-3.jpg" aria-label="Podgląd zdjęcia 3">
+                        <img src="images/kajak-3.jpg" alt="Kajak zbliżający się do zakrętu rzeki" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
+                    </button>
 
-    <!-- ZDJĘCIE 4 -->
-    <button class="group relative overflow-hidden rounded-lg shadow-md focus:outline-none" data-lightbox="images/kajak-4.jpg" aria-label="Podgląd zdjęcia 4">
-        <img src="images/kajak-4.jpg" alt="Kajak płynący w stronę zachodzącego słońca" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
-    </button>
-</div>
+                    <button class="group relative overflow-hidden rounded-lg shadow-md focus:outline-none" data-lightbox="images/kajak-4.jpg" aria-label="Podgląd zdjęcia 4">
+                        <img src="images/kajak-4.jpg" alt="Kajak płynący w stronę zachodzącego słońca" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
+                    </button>
+                </div>
             </div>
 
             <!-- Lightbox overlay -->
@@ -189,7 +194,7 @@
             </div>
         </section>
 
-        <!-- MAPA -->
+        <!-- ====== MAPA (bez zmian) ====== -->
         <section id="map" class="py-16">
             <div class="max-w-6xl mx-auto px-4">
                 <header class="mb-6 text-center">
@@ -214,7 +219,7 @@
             </div>
         </section>
 
-        <!-- REZERWACJA -->
+        <!-- ✅ POPRAWIONA SEKCJA REZERWACJI -->
         <section id="form-section" class="py-16 bg-gray-50">
             <div class="max-w-6xl mx-auto px-4">
                 <header class="mb-6 text-center">
@@ -224,27 +229,38 @@
                         Po otrzymaniu zgłoszenia skontaktujemy się z Tobą w celu potwierdzenia szczegółów.
                     </p>
                 </header>
+                
+                <!-- LINK DO FORMULARZA W NOWEJ KARCIE -->
                 <div class="mb-6 text-center">
-                    <a href="https://forms.gle/XXXXX" target="_blank" rel="noopener" class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-6 py-3 rounded-full shadow transition">
+                    <a 
+                        href="https://forms.gle/1FAIpQLSdN3KK_-HuZosWkuViM7DllePMVMFqir3BpZI_u4HEz6ZAqJQ" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-6 py-3 rounded-full shadow transition"
+                    >
                         Otwórz formularz w nowej karcie
                     </a>
                 </div>
+
+                <!-- EMBEDDED FORMULARZ -->
                 <div class="aspect-[4/3] w-full rounded-xl overflow-hidden shadow-md border border-gray-200">
                     <iframe
-                        src="https://forms.gle/XXXXX"
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSdN3KK_-HuZosWkuViM7DllePMVMFqir3BpZI_u4HEz6ZAqJQ/viewform?embedded=true"
                         title="Formularz rezerwacji spływu kajakowego"
                         width="100%"
                         height="100%"
                         frameborder="0"
                         marginheight="0"
-                        marginwidth="0">
+                        marginwidth="0"
+                        sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                    >
                         Ładowanie formularza…
                     </iframe>
                 </div>
             </div>
         </section>
 
-        <!-- KONTAKT -->
+        <!-- ====== KONTAKT (bez zmian) ====== -->
         <section id="kontakt" class="py-16">
             <div class="max-w-6xl mx-auto px-4">
                 <header class="mb-8 text-center">
@@ -285,14 +301,16 @@
         <p>© <span id="year"></span> Spływ Mała Panew – spływy kajakowe Mała Panew, Krupski Młyn. Wszelkie prawa zastrzeżone.</p>
     </footer>
 
-    <!-- Skrypt podstawowej interakcji (fallback gdy script.js jest pusty) -->
+    <!-- ====== SKRYPT (ulepszony) ====== -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Rok w stopce
             const yearSpan = document.getElementById('year');
             if (yearSpan) {
                 yearSpan.textContent = new Date().getFullYear();
             }
 
+            // Menu mobilne
             const menuBtn = document.getElementById('menu');
             const mobileNav = document.getElementById('mobile-nav');
             if (menuBtn && mobileNav) {
@@ -301,6 +319,7 @@
                 });
             }
 
+            // Lightbox dla galerii
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const lightboxClose = document.getElementById('lightbox-close');
@@ -337,7 +356,7 @@
                         closeLightbox();
                     }
                 });
-            });
+            }
 
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
@@ -346,10 +365,5 @@
             });
         });
     </script>
-
-    <!-- Pamiętaj, aby uzupełnić URL Google Forms w sekcji "REZERWACJA" -->
 </body>
 </html>
-
-
-
