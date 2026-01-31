@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================================
     const navbar = document.getElementById('navbar');
     const hamburger = document.getElementById('hamburger');
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyXXXXXXXXXXX/exec'; 
+    // ^^^ TU WKLEJ LINK Z GOOGLE (dostaniesz w kroku 2)
     const navLinks = document.getElementById('navLinks');
     const backToTop = document.getElementById('backToTop');
     const lightbox = document.getElementById('lightbox');
@@ -366,31 +368,70 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    function submitForm() {
-        const submitBtn = bookingForm.querySelector('.form-submit');
-        const originalText = submitBtn.innerHTML;
-        
-        // Loading state
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>Wysyłanie...</span>';
-        
-        // Symulacja wysyłania (zamień na fetch w produkcji)
-        setTimeout(() => {
+ function submitForm() {
+    const submitBtn = bookingForm.querySelector('.form-submit');
+    const originalText = submitBtn.innerHTML;
+    
+    // Zbierz dane z pól
+    const formData = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        date: document.getElementById('date').value,
+        people: document.getElementById('people').value,
+        route: document.getElementById('route').value,
+        message: document.getElementById('message')?.value?.trim() || ''
+    };
+
+    // Loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Wysyłanie...</span>';
+    
+    // WYSYŁKA DO GOOGLE APPS SCRIPT
+    fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.result === 'success') {
             submitBtn.innerHTML = '<span>✓ Wysłano!</span>';
             submitBtn.style.background = '#10b981';
             
-            // Reset formularza
+            // Komunikat zależny od tego czy to duplikat
+            const msg = data.duplicate 
+                ? 'Masz już rezerwację na ten termin! Sprawdź email.' 
+                : 'Rezerwacja zapisana! Sprawdź potwierdzenie na mailu.';
+            
+            showNotification(msg, 'success');
+            
+            // Reset formularza po 2 sekundach
             setTimeout(() => {
                 bookingForm.reset();
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
                 submitBtn.style.background = '';
-                
-                // Pokaż potwierdzenie
-                showNotification('Rezerwacja wysłana! Skontaktujemy się w ciągu 24h.', 'success');
-            }, 1500);
-        }, 1500);
-    }
+            }, 2000);
+        } else {
+            throw new Error(data.message || 'Błąd serwera');
+        }
+    })
+    .catch(error => {
+        console.error('Błąd:', error);
+        submitBtn.innerHTML = '<span>Błąd - spróbuj ponownie</span>';
+        submitBtn.style.background = '#ef4444';
+        showNotification('Wystąpił błąd połączenia. Odśwież stronę.', 'error');
+        
+        setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            submitBtn.style.background = '';
+        }, 3000);
+    });
+}
     
     function showNotification(message, type = 'success') {
         const notification = document.createElement('div');
@@ -652,3 +693,4 @@ notificationStyles.textContent = `
     }
 `;
 document.head.appendChild(notificationStyles);
+
