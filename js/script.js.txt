@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================================
     const navbar = document.getElementById('navbar');
     const hamburger = document.getElementById('hamburger');
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyXXXXXXXXXXX/exec'; 
-    // ^^^ TU WKLEJ LINK Z GOOGLE (dostaniesz w kroku 2)
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxtHKjkJu2_UhjoWIPsxH_DMAzqb4o2SlEqhZG-C68gdUnL6GesmCDuXbNT8obIcB8l/exec
     const navLinks = document.getElementById('navLinks');
     const backToTop = document.getElementById('backToTop');
     const lightbox = document.getElementById('lightbox');
@@ -693,4 +692,5 @@ notificationStyles.textContent = `
     }
 `;
 document.head.appendChild(notificationStyles);
+
 
